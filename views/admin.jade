@@ -8,7 +8,7 @@ html
     button(onclick='back()') Back
     script.
       const branches = async () => {
-      const response = await fetch('http://localhost:8080/branches');
+      const response = await fetch('http://nodejs-api-oh-proj1.apps.cluster.infosysadmcoe.com/branches');
       const myjson = await response.json();
       console.log(myjson);
       var headers = new Array();
