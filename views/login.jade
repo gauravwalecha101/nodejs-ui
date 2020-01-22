@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Page Title
+  body
+    h1 This is Login Page
+    select#dropdown(onchange='login()')
+      option(value='', disabled='disabled', selected='selected') Select
+      option(value='1') User
+      option(value='2') Admin
+    script.
+      const login = async () => {
+      var e = document.getElementById("dropdown");
+      var str = e.options[e.selectedIndex].text;
+      console.log(str)
+      if (str == "User") {
+      window.location.href = '/user'
+      } else {
+      window.location.href = '/admin'
+      }
+      }

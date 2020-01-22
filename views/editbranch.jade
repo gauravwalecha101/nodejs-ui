@@ -1,0 +1,78 @@
+doctype html
+html
+  head
+    title Page Title
+  body(onload='myfunc()')
+    h1 This is Edit Page
+    // <form>Name:
+    | Name:
+    input#name(type='text', name='name')
+    br
+    br
+    |  Zip Code:
+    input#zipcode(type='text', name='zipcode')
+    br
+    br
+    |  Address:
+    input#address(type='text', name='address')
+    br
+    br
+    |  Working Days:
+    input#workingdays(type='text', name='workingdays')
+    br
+    br
+    |  Working Hours:
+    input#workinghours(type='text', name='workinghours')
+    br
+    br
+    |  Description:
+    input#description(type='text', name='description')
+    br
+    br
+    |  Last Modified Date Time:
+    input#lastmodifieddtm(type='text', name='lastmodifieddtm')
+    br
+    br
+    |  State:
+    input#state(type='text', name='state')
+    br
+    br
+    button(onclick='submit()') Submit
+    // </form>
+    script.
+      const myfunc = async () => {
+      var mydata = window.sessionStorage.getItem("tabledata");
+      console.log(mydata)
+      var temp = JSON.parse(mydata)
+      console.log(temp["5"])
+      document.getElementById("name").setAttribute("value", temp["0"])
+      document.getElementById("zipcode").setAttribute("value", temp["1"])
+      document.getElementById("address").setAttribute("value", temp["2"])
+      document.getElementById("workingdays").setAttribute("value", temp["3"])
+      document.getElementById("workinghours").setAttribute("value", temp["4"])
+      document.getElementById("description").setAttribute("value", temp["5"])
+      document.getElementById("lastmodifieddtm").setAttribute("value", temp["6"])
+      document.getElementById("state").setAttribute("value", temp["7"])
+      }
+      const submit = async () => {
+      var mydata = window.sessionStorage.getItem("tabledata");
+      console.log(mydata)
+      var temp = JSON.parse(mydata)
+      var text = 'hello' +temp["5"]
+      console.log(text)
+      var jsontext1 = 'branchname='+document.getElementById("name").value +'&'+
+      'zipcode='+document.getElementById("zipcode").value +'&'+
+      'address='+document.getElementById("address").value +'&'+
+      'workingdays='+document.getElementById("workingdays").value +'&'+
+      'workinghours='+document.getElementById("workinghours").value +'&'+
+      'description='+document.getElementById("description").value +'&'+
+      'lastmodifieddtm='+document.getElementById("lastmodifieddtm").value +'&'+
+      'State='+document.getElementById("state").value +'&';
+      console.log("test---> " +document.getElementById("state").value)
+      fetch('http://localhost:8080/branch/', {
+      method: 'put',
+      body: jsontext1,
+      headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+      })
+      window.location.href = '/admin'
+      }

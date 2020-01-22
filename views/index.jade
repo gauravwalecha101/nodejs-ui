@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    title  Branch Locator Demo 
+    style.
+      header {
+      padding: 2px;
+      text-align: center;
+      font-size: 22px;
+      color: #0FADA3;
+      }
+      .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      }
+      .topnav a:hover {
+      background-color: #ddd;
+      color: #0FADA3;
+      }
+      .topnav a.active {
+      background-color: #0FADA3;
+      color: white;
+      }
+      .topnav .dropdown {
+      float: right;
+      color: #0FADA3;
+      }
+      #nname {
+      padding: 5px;
+      color: white;
+      font-size: 12px;
+      background-color: #0FADA3;
+      -webkit-appearance: none;
+      }
+      #nname option {
+      background-color: white;
+      color: #0FADA3
+      }
+  body
+    header
+      h2 BRANCH LOCATOR DEMO
+    .topnav
+      a.active(href='/error') Home
+      a(href='', onclick='return findbranches();') Find Branches
+      .dropdown
+        select#nname
+          option(value='volvo') User
+          option(value='saab') Admin
+    script.
+      function findBranches = async () => {
+      console.log("findbranches");
+      const response = await fetch('http://localhost:8080/branches');
+      const myjson = await response.json();
+      var out1 = "";
+      var out2 = "";
+      var i;
+      var k = 1;
+      console.log(myjson);
+      }

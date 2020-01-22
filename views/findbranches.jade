@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Page Title
+  body
+    h1 Search for branch here
+    |  Zip Code:
+    input#zipcode(type='text')
+    br
+    br
+    button(onclick='searchBranch()') Search
+    p#data
+    button(onclick='back()') Back
+    script.
+      const searchBranch = async () => {
+      var zipcode = document.getElementById("zipcode").value
+      var url = 'http://localhost:8080/branch/' + zipcode
+      console.log(url)
+      const response = await fetch(url);
+      const myjson = await response.json();
+      console.log(myjson);
+      document.getElementById("data").innerHTML = JSON.stringify(myjson);
+      }
+      const back = async () => {
+      window.location.href = '/user'
+      }
